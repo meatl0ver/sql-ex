@@ -1,0 +1,6 @@
+--Найдите производителя, выпускающего ПК, но не ПК-блокноты.
+
+
+select distinct maker from product 
+where type like 'pc'
+and maker not in (select maker from product where type like 'laptop')
