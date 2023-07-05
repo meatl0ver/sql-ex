@@ -1,0 +1,4 @@
+--Найдите среднюю скорость ПК, выпущенных производителем A.
+
+select AVG(speed) from pc left join product on product.model =pc.model
+where maker like 'A'
