@@ -24,10 +24,10 @@
 (задачи 14)
 
 Рассматривается БД кораблей, участвовавших во второй мировой войне. Имеются следующие отношения:
-*Classes (class, type, country, numGuns, bore, displacement)
-*Ships (name, class, launched)
-*Battles (name, date)
-*Outcomes (ship, battle, result)
+* Classes (class, type, country, numGuns, bore, displacement)
+* Ships (name, class, launched)
+* Battles (name, date)
+* Outcomes (ship, battle, result)
 
 
 Корабли в «классах» построены по одному и тому же проекту, и классу присваивается либо имя первого корабля, построенного по данному проекту, либо названию класса дается имя проекта, которое не совпадает ни с одним из кораблей в БД. Корабль, давший название классу, называется головным.
