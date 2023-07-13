@@ -64,6 +64,7 @@
 **Income(code, point, date, inc)**
 
 **Outcome(code, point, date, out)**
+
 Здесь также значения столбца date не содержат времени.
 
 ***
