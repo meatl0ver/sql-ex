@@ -60,8 +60,10 @@
 
 
 В случае, когда приход и расход денег может фиксироваться несколько раз в день, используется другая схема с таблицами, имеющими первичный ключ code:
-Income(code, point, date, inc)
-Outcome(code, point, date, out)
+
+**Income(code, point, date, inc)**
+
+**Outcome(code, point, date, out)**
 Здесь также значения столбца date не содержат времени.
 
 ***
