@@ -1,0 +1,10 @@
+--Найдите классы, в которые входит только один корабль из базы данных (учесть также корабли в Outcomes).
+
+select class 
+from(
+  select class,ship from outcomes, classes 
+  where upper(classes.class) like upper(outcomes.ship)
+union
+  select class,name from ships) q
+group by class
+having count(class) = 1
