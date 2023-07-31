@@ -1,0 +1,6 @@
+--Перечислите названия головных кораблей, имеющихся в базе данных (учесть корабли в Outcomes).
+
+select name from ships where class like name
+union
+select ship from outcomes, classes 
+where upper(classes.class) like upper(outcomes.ship)
