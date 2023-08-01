@@ -1,0 +1,6 @@
+-- Найдите страны, имевшие когда-либо классы обычных боевых кораблей ('bb') и имевшие когда-либо классы крейсеров ('bc').
+
+select distinct country from classes 
+where 
+country in (select country from classes where type = 'bb')
+and country in (select country from classes where type = 'bc')
