@@ -1,0 +1,6 @@
+--Для каждого корабля, участвовавшего в сражении при Гвадалканале (Guadalcanal), вывести название, водоизмещение и число орудий.
+
+select distinct o.ship,c.displacement,c.numGuns from outcomes o 
+left join ships s on o.ship = s.name 
+left join classes c on c.class = s.class or o.ship = c.class
+where battle like 'Guadalcanal'
