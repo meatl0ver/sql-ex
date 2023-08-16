@@ -1,0 +1,8 @@
+--Найдите классы кораблей, в которых хотя бы один корабль был потоплен в сражении.
+
+
+select distinct c.class from outcomes o
+left join ships s on s.name = o.ship
+left join classes c on c.class = s.class or o.ship = c.class
+where result like 'sunk'
+and c.class is not null
