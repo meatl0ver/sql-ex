@@ -1,0 +1,11 @@
+--Найдите названия кораблей с орудиями калибра 16 дюймов (учесть корабли из таблицы Outcomes).
+
+select ships.name
+from classes join
+ships on classes.class = ships.class
+where bore = 16
+union
+select outcomes.ship
+from outcomes join
+classes on classes.class = outcomes.ship
+where bore = 16
