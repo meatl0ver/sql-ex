@@ -1,0 +1,11 @@
+--С точностью до 2-х десятичных знаков определите среднее число орудий всех линейных кораблей (учесть корабли из таблицы Outcomes).
+
+
+with q as (
+select name,numGuns from ships s left join classes c on c.class = s.class
+where type like 'bb'
+union 
+select ship,numGuns from outcomes o left join classes c on o.ship = c.class
+where type like 'bb')
+
+select cast(avg(cast(numguns as numeric(6,2))) as numeric(6,2)) from q
