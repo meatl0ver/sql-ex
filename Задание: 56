@@ -1,0 +1,11 @@
+--Для каждого класса определите число кораблей этого класса, потопленных в сражениях. Вывести: класс и число потопленных кораблей.
+
+with sc as (select c.class from outcomes o 
+left join ships s on s.name = o.ship
+left join classes c on c.class = s.class or c.class = o.ship
+where result like 'sunk')
+
+
+select distinct c.class,count(sc.class) from classes c
+left join sc on sc.class = c.class
+group by c.class
