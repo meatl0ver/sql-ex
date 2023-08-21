@@ -1,0 +1,8 @@
+--Посчитать остаток денежных средств на каждом пункте приема для базы данных с отчетностью не чаще одного раза в день. Вывод: пункт, остаток.
+
+with i as (select point, i =sum(inc) from income_o
+group by point)
+,o as (select point, o =sum(out) from outcome_o
+group by point)
+
+select i.point,isnull(i,0)-isnull(o,0) from i left join o on o.point = i.point
