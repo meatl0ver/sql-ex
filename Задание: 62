@@ -1,0 +1,13 @@
+--Посчитать остаток денежных средств на всех пунктах приема на начало дня 15/04/01 для базы данных с отчетностью не чаще одного раза в день.
+
+
+with p as (
+select distinct point from Income_o
+union
+select distinct point from outcome_o
+),i as (select point, i =sum(inc) from income_o where date < '2001-04-15' 
+group by point)
+,o as (select point, o =sum(out) from outcome_o where date < '2001-04-15' 
+group by point)
+,res as (select i.point,r = isnull(i,0)-isnull(o,0) from i left join o on o.point = i.point)
+select sum(r) from p left join res on res.point = p.point where r is not null
