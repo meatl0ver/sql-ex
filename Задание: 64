@@ -1,0 +1,13 @@
+with i as (select i.point,i.date,x= 'inc',inc=sum(inc) from income i left join outcome o on o.point = i.point and o.date = i.date
+where o.date is null
+group by i.point,i.date)
+, o as (select i.point,i.date, x= 'out' ,out=sum(out)from outcome i left join income o on o.point = i.point and o.date = i.date
+where o.date is null
+group by i.point,i.date)
+,res as (
+select * from o
+union
+select * from i
+)
+
+select * from res
