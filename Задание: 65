@@ -1,0 +1,26 @@
+-- Пронумеровать уникальные пары {maker, type} из Product, упорядочив их следующим образом:
+-- - имя производителя (maker) по возрастанию;
+-- - тип продукта (type) в порядке PC, Laptop, Printer.
+-- Если некий производитель выпускает несколько типов продукции, то выводить его имя только в первой строке;
+-- остальные строки для ЭТОГО производителя должны содержать пустую строку символов ('').
+
+with q1 as(
+select 
+	maker
+	,type 
+	,s = case 
+		when type like 'PC' then 0
+		when type like 'Laptop' then 1
+		when type like 'Printer' then 2
+	end
+from product
+)
+, minq as (
+select maker, x = min(s) from q1
+group by maker
+)
+
+
+select row_number() over (order by q1.maker,s),m = iif(q1.maker = minq.maker and s = x, q1.maker, ''),type from q1 left join minq on minq.maker = q1.maker
+group by iif(q1.maker = minq.maker and s = x, q1.maker, ''),q1.maker,type,s
+order by q1.maker,q1.type
