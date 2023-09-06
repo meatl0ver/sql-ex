@@ -1,0 +1,10 @@
+--Найти количество маршрутов, которые обслуживаются наибольшим числом рейсов.
+--Замечания.
+--1) A - B и B - A считать РАЗНЫМИ маршрутами.
+--2) Использовать только таблицу Trip
+
+with q1 as (select x= concat(town_from, town_to),c=count(*) from trip
+group by concat(town_from, town_to))
+,max_q1 as (select mc = max(c) from q1)
+
+select count(*) from q1 where c = (select mc from max_q1)
